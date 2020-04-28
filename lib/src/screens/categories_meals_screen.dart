@@ -7,9 +7,7 @@ class CategoriesMealsScreen extends StatelessWidget {
     final category = ModalRoute.of(context).settings.arguments as Category;
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text(category.title),
-        ),
+        title: Text(category.title),
       ),
       body: Center(
         child: Text(
