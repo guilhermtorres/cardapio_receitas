@@ -1,18 +1,35 @@
+import 'package:cardapio_receitas/src/components/drawer_components.dart';
+import 'package:cardapio_receitas/src/models/meal_models.dart';
 import 'package:cardapio_receitas/src/screens/category_screens.dart';
 import 'package:cardapio_receitas/src/screens/favorites_screens.dart';
 import 'package:flutter/material.dart';
 
 class TabsScreens extends StatefulWidget {
+  final List<Meal> _favoriteMeals;
+
+  const TabsScreens(this._favoriteMeals);
+
   @override
   _TabsScreensState createState() => _TabsScreensState();
 }
 
 class _TabsScreensState extends State<TabsScreens> {
   int _selectedScreenIndex = 0;
-  final List<Map<String, dynamic>> _screens = [
-    {'title': 'Lista de Categorias', 'screen': CategoriesScreen()},
-    {'title': 'Meus Favoritos', 'screen': FavoritesScreens()}
-  ];
+  List<Map<String, dynamic>> _screens;
+
+  void initState() {
+    super.initState();
+    _screens = [
+      {
+        'title': 'Lista de Categorias',
+        'screen': CategoriesScreen(),
+      },
+      {
+        'title': 'Meus Favoritos',
+        'screen': FavoritesScreens(widget._favoriteMeals),
+      }
+    ];
+  }
 
   _selectScreen(int index) {
     setState(() {
@@ -30,6 +47,7 @@ class _TabsScreensState extends State<TabsScreens> {
             _screens[_selectedScreenIndex]['title'],
           ),
         ),
+        drawer: MainDrawer(),
         body: _screens[_selectedScreenIndex]['screen'],
         bottomNavigationBar: BottomNavigationBar(
           onTap: _selectScreen,

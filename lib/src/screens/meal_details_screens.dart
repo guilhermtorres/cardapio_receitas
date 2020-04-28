@@ -2,6 +2,10 @@ import 'package:cardapio_receitas/src/models/meal_models.dart';
 import 'package:flutter/material.dart';
 
 class MealDetailScreens extends StatelessWidget {
+  final Function(Meal) onToggleFavorite;
+  final bool Function(Meal) isFavorite;
+  const MealDetailScreens(this.onToggleFavorite, this.isFavorite);
+
   Widget _createSectionTitle(BuildContext context, String title) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
@@ -86,6 +90,12 @@ class MealDetailScreens extends StatelessWidget {
             )
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(isFavorite(meal) ? Icons.favorite : Icons.favorite_border),
+        onPressed: () {
+          onToggleFavorite(meal);
+        },
       ),
     );
   }
