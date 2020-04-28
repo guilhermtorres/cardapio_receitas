@@ -1,5 +1,6 @@
 import 'package:cardapio_receitas/src/screens/categories_meals_screen.dart';
 import 'package:cardapio_receitas/src/screens/category_screens.dart';
+import 'package:cardapio_receitas/src/screens/meal_details_screens.dart';
 import 'package:cardapio_receitas/src/utils/app_routes_utils.dart';
 import 'package:flutter/material.dart';
 
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
       routes: {
         AppRoutes.HOME: (ctx) => CategoriesScreen(),
         AppRoutes.CATEGORIES_MEALS: (ctx) => CategoriesMealsScreen(),
+        AppRoutes.MEAL_DETAILS: (ctx) => MealDetailScreens(),
       },
     );
   }
